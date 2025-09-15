@@ -1,0 +1,482 @@
+[
+  {
+    "id": "1",
+    "name": "Bogotá",
+    "stays": [
+      {
+        "id": "1",
+        "title": "Apartamento moderno en Chapinero",
+        "description": "Acogedor apartamento cerca de la zona rosa de Bogotá.",
+        "guests": 4,
+        "maxGuests": 4,
+        "beds": 2,
+        "type": "Entire apartment",
+        "superHost": false,
+        "price": 55000,
+        "rating": 4.7,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+      },
+      {
+        "id": "2",
+        "title": "Loft con vista a Monserrate",
+        "description": "Hermoso loft con balcón y vista panorámica de Bogotá.",
+        "guests": 2,
+        "maxGuests": 2,
+        "beds": 1,
+        "type": "Loft",
+        "superHost": true,
+        "price": 70000,
+        "rating": 4.9,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1595526114035-0e00b3cd0af8"
+      },
+      {
+        "id": "3",
+        "title": "Casa familiar en Usaquén",
+        "description": "Casa amplia ideal para grupos y familias en el norte de Bogotá.",
+        "guests": 6,
+        "maxGuests": 6,
+        "beds": 4,
+        "type": "House",
+        "superHost": false,
+        "price": 120000,
+        "rating": 4.5,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Medellín",
+    "stays": [
+      {
+        "id": "4",
+        "title": "Apartamento en El Poblado",
+        "description": "Apartamento elegante cerca de restaurantes y vida nocturna.",
+        "guests": 3,
+        "maxGuests": 3,
+        "beds": 2,
+        "type": "Entire apartment",
+        "superHost": true,
+        "price": 65000,
+        "rating": 4.8,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1613490493576-7fde63acd811"
+      },
+      {
+        "id": "5",
+        "title": "Penthouse con jacuzzi",
+        "description": "Lujoso penthouse con terraza y jacuzzi en Medellín.",
+        "guests": 5,
+        "maxGuests": 5,
+        "beds": 3,
+        "type": "Penthouse",
+        "superHost": true,
+        "price": 150000,
+        "rating": 5.0,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+      },
+      {
+        "id": "6",
+        "title": "Estudio acogedor en Laureles",
+        "description": "Espacio pequeño pero moderno, ideal para parejas.",
+        "guests": 2,
+        "maxGuests": 2,
+        "beds": 1,
+        "type": "Studio",
+        "superHost": false,
+        "price": 40000,
+        "rating": 4.4,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154206-0c3b7f23b9f4"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Cali",
+    "stays": [
+      {
+        "id": "7",
+        "title": "Apartamento en Granada",
+        "description": "Apartamento moderno en una de las zonas más exclusivas de Cali.",
+        "guests": 4,
+        "maxGuests": 4,
+        "beds": 2,
+        "type": "Entire apartment",
+        "superHost": false,
+        "price": 60000,
+        "rating": 4.6,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20b"
+      },
+      {
+        "id": "8",
+        "title": "Casa con piscina en Pance",
+        "description": "Amplia casa familiar con piscina privada en zona campestre.",
+        "guests": 8,
+        "maxGuests": 8,
+        "beds": 5,
+        "type": "House",
+        "superHost": true,
+        "price": 180000,
+        "rating": 4.9,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154206-0c3b7f23b9f4"
+      },
+      {
+        "id": "9",
+        "title": "Loft minimalista en San Antonio",
+        "description": "Loft acogedor con decoración minimalista en el barrio San Antonio.",
+        "guests": 2,
+        "maxGuests": 2,
+        "beds": 1,
+        "type": "Loft",
+        "superHost": false,
+        "price": 50000,
+        "rating": 4.5,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600047509807-817f1d21f1a2"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Bucaramanga",
+    "stays": [
+      {
+        "id": "10",
+        "title": "Apartamento céntrico en Bucaramanga",
+        "description": "Moderno apartamento cerca de restaurantes y centros comerciales.",
+        "guests": 3,
+        "maxGuests": 3,
+        "beds": 2,
+        "type": "Entire apartment",
+        "superHost": false,
+        "price": 50000,
+        "rating": 4.6,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154176-d6c2f0a7b7a9"
+      },
+      {
+        "id": "11",
+        "title": "Casa campestre con vista",
+        "description": "Hermosa casa campestre con amplios jardines y vista a las montañas.",
+        "guests": 7,
+        "maxGuests": 7,
+        "beds": 4,
+        "type": "House",
+        "superHost": true,
+        "price": 170000,
+        "rating": 4.9,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1599423300746-b62533397364"
+      },
+      {
+        "id": "12",
+        "title": "Habitación privada en el centro",
+        "description": "Cómoda habitación privada para viajeros de paso.",
+        "guests": 1,
+        "maxGuests": 1,
+        "beds": 1,
+        "type": "Private room",
+        "superHost": false,
+        "price": 30000,
+        "rating": 4.3,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154138-4c3b7f23b9f4"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "Cartagena",
+    "stays": [
+      {
+        "id": "13",
+        "title": "Apartamento colonial en el Centro Histórico",
+        "description": "Hermoso apartamento en una casa colonial restaurada.",
+        "guests": 3,
+        "maxGuests": 3,
+        "beds": 2,
+        "type": "Entire apartment",
+        "superHost": true,
+        "price": 120000,
+        "rating": 4.8,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1629079447777-13e6dbd6c02a"
+      },
+      {
+        "id": "14",
+        "title": "Penthouse frente al mar",
+        "description": "Penthouse de lujo con terraza y vista panorámica al Caribe.",
+        "guests": 6,
+        "maxGuests": 6,
+        "beds": 3,
+        "type": "Penthouse",
+        "superHost": true,
+        "price": 250000,
+        "rating": 5.0,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600573472592-401b489a3cdc"
+      },
+      {
+        "id": "15",
+        "title": "Hostal boutique en Getsemaní",
+        "description": "Habitación privada en un hostal boutique con estilo caribeño.",
+        "guests": 2,
+        "maxGuests": 2,
+        "beds": 1,
+        "type": "Private room",
+        "superHost": false,
+        "price": 45000,
+        "rating": 4.3,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154310-9f3a2e5d7a3e"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "name": "Cúcuta",
+    "stays": [
+      {
+        "id": "16",
+        "title": "Apartamento moderno en el centro",
+        "description": "Apartamento cómodo y moderno cerca de la zona comercial.",
+        "guests": 4,
+        "maxGuests": 4,
+        "beds": 2,
+        "type": "Entire apartment",
+        "superHost": false,
+        "price": 50000,
+        "rating": 4.5,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154176-d6c2f0a7b7a8"
+      },
+      {
+        "id": "17",
+        "title": "Casa familiar en los suburbios",
+        "description": "Amplia casa ideal para familias en un barrio tranquilo.",
+        "guests": 6,
+        "maxGuests": 6,
+        "beds": 4,
+        "type": "House",
+        "superHost": true,
+        "price": 130000,
+        "rating": 4.7,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154196-8c3b7f23b9f4"
+      },
+      {
+        "id": "18",
+        "title": "Habitación privada económica",
+        "description": "Habitación privada sencilla y económica para viajeros.",
+        "guests": 1,
+        "maxGuests": 1,
+        "beds": 1,
+        "type": "Private room",
+        "superHost": false,
+        "price": 25000,
+        "rating": 4.2,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154120-7c3b7f23b9f4"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "name": "Pereira",
+    "stays": [
+      {
+        "id": "19",
+        "title": "Apartamento céntrico en Pereira",
+        "description": "Apartamento moderno en el corazón de la ciudad.",
+        "guests": 3,
+        "maxGuests": 3,
+        "beds": 2,
+        "type": "Entire apartment",
+        "superHost": false,
+        "price": 55000,
+        "rating": 4.6,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154146-3c3b7f23b9f4"
+      },
+      {
+        "id": "20",
+        "title": "Finca con piscina",
+        "description": "Hermosa finca campestre con piscina privada.",
+        "guests": 10,
+        "maxGuests": 10,
+        "beds": 6,
+        "type": "House",
+        "superHost": true,
+        "price": 200000,
+        "rating": 4.9,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154198-5c3b7f23b9f4"
+      },
+      {
+        "id": "21",
+        "title": "Habitación privada cerca del aeropuerto",
+        "description": "Habitación privada cómoda y práctica para viajeros.",
+        "guests": 2,
+        "maxGuests": 2,
+        "beds": 1,
+        "type": "Private room",
+        "superHost": false,
+        "price": 35000,
+        "rating": 4.3,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154130-4c3b7f23b9f4"
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "name": "Santa Marta",
+    "stays": [
+      {
+        "id": "22",
+        "title": "Apartamento frente a la playa",
+        "description": "Apartamento moderno con vista al mar Caribe.",
+        "guests": 4,
+        "maxGuests": 4,
+        "beds": 2,
+        "type": "Entire apartment",
+        "superHost": true,
+        "price": 150000,
+        "rating": 4.8,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154186-7c3b7f23b9f4"
+      },
+      {
+        "id": "23",
+        "title": "Casa con acceso directo a la playa",
+        "description": "Amplia casa familiar con acceso directo al mar.",
+        "guests": 8,
+        "maxGuests": 8,
+        "beds": 5,
+        "type": "House",
+        "superHost": true,
+        "price": 300000,
+        "rating": 5.0,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154190-6c3b7f23b9f4"
+      },
+      {
+        "id": "24",
+        "title": "Habitación privada en Taganga",
+        "description": "Habitación privada en hostal cerca de la playa de Taganga.",
+        "guests": 2,
+        "maxGuests": 2,
+        "beds": 1,
+        "type": "Private room",
+        "superHost": false,
+        "price": 40000,
+        "rating": 4.2,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154122-9c3b7f23b9f4"
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "name": "Ibagué",
+    "stays": [
+      {
+        "id": "25",
+        "title": "Apartamento moderno en Ibagué",
+        "description": "Apartamento cómodo en zona céntrica.",
+        "guests": 3,
+        "maxGuests": 3,
+        "beds": 2,
+        "type": "Entire apartment",
+        "superHost": false,
+        "price": 45000,
+        "rating": 4.4,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154166-2c3b7f23b9f4"
+      },
+      {
+        "id": "26",
+        "title": "Casa campestre en las afueras",
+        "description": "Casa amplia con jardines en zona tranquila.",
+        "guests": 6,
+        "maxGuests": 6,
+        "beds": 4,
+        "type": "House",
+        "superHost": true,
+        "price": 120000,
+        "rating": 4.7,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154199-9c3b7f23b9f4"
+      },
+      {
+        "id": "27",
+        "title": "Habitación privada económica",
+        "description": "Habitación sencilla y económica para viajeros.",
+        "guests": 1,
+        "maxGuests": 1,
+        "beds": 1,
+        "type": "Private room",
+        "superHost": false,
+        "price": 25000,
+        "rating": 4.1,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154111-8c3b7f23b9f4"
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "name": "Manizales",
+    "stays": [
+      {
+        "id": "28",
+        "title": "Apartamento céntrico con vista",
+        "description": "Apartamento moderno con vista a las montañas.",
+        "guests": 4,
+        "maxGuests": 4,
+        "beds": 2,
+        "type": "Entire apartment",
+        "superHost": false,
+        "price": 55000,
+        "rating": 4.6,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154140-5c3b7f23b9f4"
+      },
+      {
+        "id": "29",
+        "title": "Casa campestre con cafetales",
+        "description": "Hermosa casa en medio de cafetales.",
+        "guests": 7,
+        "maxGuests": 7,
+        "beds": 4,
+        "type": "House",
+        "superHost": true,
+        "price": 160000,
+        "rating": 4.9,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154197-7c3b7f23b9f4"
+      },
+      {
+        "id": "30",
+        "title": "Habitación privada en zona universitaria",
+        "description": "Habitación privada práctica para estudiantes o viajeros.",
+        "guests": 2,
+        "maxGuests": 2,
+        "beds": 1,
+        "type": "Private room",
+        "superHost": false,
+        "price": 30000,
+        "rating": 4.2,
+        "available": true,
+        "image": "https://images.unsplash.com/photo-1600585154139-6c3b7f23b9f4"
+      }
+    ]
+  }
+]
