@@ -192,14 +192,11 @@ const getAllStays = async () => {
     }
 
     const data = await response.json();
-    const stayAvailable = data.filter((city) =>
-      city.stays.filter((stay) => stay.available === true)
-    );
 
-    if (stayAvailable.length > 0) {
+    if (data.length > 0) {
       return {
         success: true,
-        data: stayAvailable,
+        data: data,
         message: "Estadias encontrada correctamente",
       };
     }
@@ -218,4 +215,102 @@ const getAllStays = async () => {
   }
 };
 
-export { getAllStays };
+const fillCardStays = (data, callbackAnimation) => {
+  const filterStayCity = document.getElementById("filter-stay-city");
+  const filterGuest = document.getElementById("filter-guest");
+  const stay = filterStayCity.textContent;
+  let stayCity = "";
+  if (stay.includes(",")) {
+    stayCity = stay.split(",")[1].trim();
+  }
+  const match = filterGuest.textContent.match(/\d+/);
+
+  let guests = 0;
+  if (match) {
+    guests = parseInt(match[0], 10);
+  }
+ 
+  const filtered = data.filter((item) => {
+    const matchStay = stayCity ? item.country.toLowerCase() === stayCity.toLowerCase() : true;
+    const matchGuest = guests ? item.maxGuests >= guests : true;
+    return matchStay && matchGuest;
+  });
+
+  const filteredLength = filtered.length > 12 ? "12+" : filtered.length;
+
+  const contentTitle = document.createElement("div");
+  contentTitle.className="flex justify-between items-start mt-10 mb-8";
+  const h2Title = document.createElement("h2");
+  h2Title.textContent=`Stays in ${stayCity}`;
+  h2Title.className="text-2xl font-semibold";
+  const h3Title = document.createElement("h3");
+  h3Title.textContent=`${filteredLength} stays`;
+  h3Title.className="text-[#575757]";
+  contentTitle.appendChild(h2Title);
+  contentTitle.appendChild(h3Title);
+  callbackAnimation("main-content-title", contentTitle);
+  const contentListCard = document.createElement("div");
+  contentListCard.className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12";
+  for (let index = 0; index < 6; index++) {
+    const stay = filtered[index];
+    const beds = stay.beds ?`· ${stay.beds } beds`: '';
+    const contentCard = document.createElement("div");
+    contentCard.className = "flex flex-col gap-2";
+    const contentCardImg = document.createElement("div");
+    contentCardImg.className = "flex flex-col gap-1 mb-4";
+    const cardImg = document.createElement("img");
+    cardImg.src = stay.photo;
+    cardImg.alt = `${stay.type} ${beds}`;
+    cardImg.className = "rounded-3xl h-50 lg:h-70 2xl:h-full  object-cover";
+    contentCardImg.appendChild(cardImg);
+
+    
+    const contentCardDetails = document.createElement("div");
+    contentCardDetails.className = "flex flex-col gap-2";
+
+    const detailTop = document.createElement("div");
+    detailTop.className = "flex justify-between items-center";
+
+    const titleWrapper = document.createElement("div");
+    if (stay.superHost) {
+      const superHost = document.createElement("span");
+      superHost.textContent = "SUPER HOST";
+      superHost.className = "border border-gray-500 rounded-full px-3 py-1.5 text-xs font-bold uppercase mr-2";
+      titleWrapper.appendChild(superHost);
+    }
+ 
+    const typeText = document.createElement("span");
+    typeText.textContent = `${stay.type} ${beds}`;
+    typeText.className = "text-gray-600";
+    titleWrapper.appendChild(typeText);
+
+    const ratingWrapper = document.createElement("div");
+    ratingWrapper.className = "flex items-center gap-2";
+    const star = document.createElement("img");
+    star.src = "./src/images/icons/star_55f860b4.svg";
+    star.alt = "star";
+    star.className = "w-4 h-4";
+    const rating = document.createElement("span");
+    rating.textContent = stay.rating;
+    rating.className = "text-sm font-light";
+    ratingWrapper.appendChild(star);
+    ratingWrapper.appendChild(rating);
+
+    detailTop.appendChild(titleWrapper);
+    detailTop.appendChild(ratingWrapper);
+
+    const description = document.createElement("h2");
+    description.textContent = stay.title;
+    description.className = "text-base font-semibold";
+
+    contentCardDetails.appendChild(detailTop);
+    contentCardDetails.appendChild(description);
+    contentCard.appendChild(contentCardImg);
+    contentCard.appendChild(contentCardDetails);
+    contentListCard.appendChild(contentCard);
+    
+  };
+  callbackAnimation("main-content-card", contentListCard, 1000, 'ease-out');
+};
+
+export { getAllStays, fillCardStays };

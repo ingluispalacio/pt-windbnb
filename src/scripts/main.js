@@ -4,9 +4,18 @@
  * que define el comportamiento del programa.
  */
 
-import { getAllStays } from "./stays.js";
+import { getAllStays, fillCardStays } from "./stays.js";
+import {
+    drawerFilters,
+    toggleFilter
+} from "./filters.js"
+import { fillContentAnimationById, counterById } from "./utils.js";
 
 const response = await getAllStays();
 if (response.success) {
-    console.log("estadias", response.data)
+    toggleFilter(response.data, fillContentAnimationById, counterById);
+    fillCardStays(response.data, fillContentAnimationById);
 }
+
+drawerFilters();
+
