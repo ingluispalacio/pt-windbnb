@@ -21,7 +21,11 @@ const fillContentAnimationById = (
   target.style.transform = "translateY(20px)";
   target.style.transition = "none";
   target.style.willChange = "opacity, transform";
-  content.appendChild(htmlData);
+  if (addElement) {
+    content.appendChild(htmlData);
+  } else {
+    content.replaceChildren(htmlData);
+  }
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       target.style.transition = `opacity ${duration}ms ${type} ${delay}ms, transform ${duration}ms ${type} ${delay}ms`;
