@@ -14,6 +14,7 @@ import { fillContentAnimationById, counterById, showLoading } from "./utils.js";
 
 
 showLoading("filter-stay-city");
+showLoading("city-location");
 
 const response = await getAllStays();
 if (response.success) {

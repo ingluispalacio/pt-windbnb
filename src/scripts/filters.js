@@ -67,7 +67,7 @@ const toggleFilter = (data, callbackFillAnimation, callbackCounter) => {
     ul.className = "flex flex-col gap-6";
     newData.forEach((element) => {
       const li = document.createElement("li");
-      li.className = "flex gap-2";
+      li.className = "flex gap-2 cursor-pointer";
       const imgLocation = document.createElement("img");
       imgLocation.src = "./src/images/icons/location_5df7949e.svg";
       imgLocation.alt = "Location Icon";
