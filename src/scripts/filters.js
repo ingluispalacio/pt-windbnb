@@ -1,21 +1,21 @@
+const drawer = document.getElementById("drawer");
+const overlay = document.getElementById("overlay");
+const openButton = document.getElementById("openDrawer");
+const closeButton = document.getElementById("closeDrawer");
+
+const openDrawer = () => {
+  drawer.classList.remove("-translate-y-full");
+  overlay.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+}
+
+const closeDrawer = () => {
+  drawer.classList.add("-translate-y-full");
+  overlay.classList.add("hidden");
+  document.body.style.overflow = "auto";
+}
+
 const drawerFilters = () => {
-  const drawer = document.getElementById("drawer");
-  const overlay = document.getElementById("overlay");
-  const openButton = document.getElementById("openDrawer");
-  const closeButton = document.getElementById("closeDrawer");
-
-  function openDrawer() {
-    drawer.classList.remove("-translate-y-full");
-    overlay.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeDrawer() {
-    drawer.classList.add("-translate-y-full");
-    overlay.classList.add("hidden");
-    document.body.style.overflow = "auto";
-  }
-
   openButton.addEventListener("click", openDrawer);
   closeButton.addEventListener("click", closeDrawer);
   overlay.addEventListener("click", closeDrawer);
@@ -28,13 +28,22 @@ const drawerFilters = () => {
 };
 
 const toggleFilter = (data, callbackFillAnimation, callbackCounter) => {
+  const contentLabelCityLocation = document.getElementById(
+    "content-label-city-location"
+  );
+  const labelCityLocation = document.getElementById("label-city-location");
   const cityLocation = document.getElementById("city-location");
+  const filterStayCity = document.getElementById("filter-stay-city");
+  const contentLabelGuest = document.getElementById("content-label-guest");
+  const labelGuest = document.getElementById("label-guest");
   const guest = document.getElementById("guest");
   const highlight = document.getElementById("highlight");
 
   const moveHighlight = (target) => {
     const parentRect = target.parentElement.getBoundingClientRect();
-    const containerRect = target.closest("div.relative").getBoundingClientRect();
+    const containerRect = target
+      .closest("div.relative")
+      .getBoundingClientRect();
 
     const offsetX = parentRect.left - containerRect.left;
     const offsetY = parentRect.top - containerRect.top;
@@ -45,14 +54,15 @@ const toggleFilter = (data, callbackFillAnimation, callbackCounter) => {
     highlight.style.opacity = "1";
   };
 
-  cityLocation.addEventListener("click", () => {
-   
-    moveHighlight(cityLocation);
+  contentLabelCityLocation.addEventListener("click", () => {
+    moveHighlight(labelCityLocation);
 
     cityLocation.classList.remove("text-[#bdbdbd]");
     guest.classList.add("text-[#bdbdbd]");
 
     const newData = [...new Set(data.map((m) => `${m.city}, ${m.country}`))];
+    filterStayCity.textContent = newData[0];
+    cityLocation.textContent = newData[0];
     const ul = document.createElement("ul");
     ul.className = "flex flex-col gap-6";
     newData.forEach((element) => {
@@ -74,27 +84,40 @@ const toggleFilter = (data, callbackFillAnimation, callbackCounter) => {
     callbackFillAnimation("content-guest", "");
   });
 
-  guest.addEventListener("click", () => {
-    
-    moveHighlight(guest);
+  contentLabelGuest.addEventListener("click", () => {
+    moveHighlight(labelGuest);
 
     guest.classList.remove("text-[#bdbdbd]");
     cityLocation.classList.add("text-[#bdbdbd]");
 
     const wrapper = document.createElement("div");
     wrapper.className = "flex flex-col gap-6";
-    wrapper.appendChild(createGuestCounter("Adults", "Ages 13 or above", "adultTotal", callbackCounter));
-    wrapper.appendChild(createGuestCounter("Children", "Ages 2-12", "childTotal", callbackCounter));
+    wrapper.appendChild(
+      createGuestCounter(
+        "Adults",
+        "Ages 13 or above",
+        "adultTotal",
+        callbackCounter
+      )
+    );
+    wrapper.appendChild(
+      createGuestCounter("Children", "Ages 2-12", "childTotal", callbackCounter)
+    );
 
     callbackFillAnimation("content-guest", wrapper);
     callbackFillAnimation("content-city-location", "");
   });
 
-  cityLocation.click();
+  contentLabelCityLocation.click();
 };
 
-
-const createGuestCounter = (title, subtitle, idCounter, callbackCounter, options = {}) => {
+const createGuestCounter = (
+  title,
+  subtitle,
+  idCounter,
+  callbackCounter,
+  options = {}
+) => {
   const { affectsTotal = true } = options;
   const guestCounter = document.createElement("div");
   guestCounter.className = "flex flex-col gap-2";
@@ -138,7 +161,6 @@ const createGuestCounter = (title, subtitle, idCounter, callbackCounter, options
     let total = 0;
 
     counters.forEach((el) => {
-      console.log("el.textContent", el.textContent)
       total += parseInt(el.textContent, 10) || 0;
     });
 
@@ -150,9 +172,8 @@ const createGuestCounter = (title, subtitle, idCounter, callbackCounter, options
   };
 
   btnIncrement.addEventListener("click", () => {
-   callbackCounter(idCounter);
-   updateGuestTotal();
-
+    callbackCounter(idCounter);
+    updateGuestTotal();
   });
   btnDecrement.addEventListener("click", () => {
     callbackCounter(idCounter, true);
@@ -169,4 +190,22 @@ const createGuestCounter = (title, subtitle, idCounter, callbackCounter, options
   return guestCounter;
 };
 
-export { drawerFilters, toggleFilter };
+const searchStays = (callbackFillCard) => {
+  const cityLocation = document.getElementById("city-location");
+  const filterStayCity = document.getElementById("filter-stay-city");
+  const guest = document.getElementById("guest");
+  const filterGuest = document.getElementById("filter-guest");
+
+  const applyFilters = () => {
+    filterStayCity.textContent = cityLocation.textContent;
+    filterGuest.textContent = guest.textContent;
+    callbackFillCard();
+    closeDrawer();
+  }
+
+  document.querySelectorAll(".btn-search").forEach(btn => {
+    btn.addEventListener("click", applyFilters);
+  });
+};
+
+export { drawerFilters, toggleFilter, searchStays };

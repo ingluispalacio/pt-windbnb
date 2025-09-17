@@ -7,14 +7,19 @@
 import { getAllStays, fillCardStays } from "./stays.js";
 import {
     drawerFilters,
-    toggleFilter
+    toggleFilter,
+    searchStays
 } from "./filters.js"
-import { fillContentAnimationById, counterById } from "./utils.js";
+import { fillContentAnimationById, counterById, showLoading } from "./utils.js";
+
+
+showLoading("filter-stay-city");
 
 const response = await getAllStays();
 if (response.success) {
     toggleFilter(response.data, fillContentAnimationById, counterById);
     fillCardStays(response.data, fillContentAnimationById);
+    searchStays(() => fillCardStays(response.data, fillContentAnimationById));
 }
 
 drawerFilters();

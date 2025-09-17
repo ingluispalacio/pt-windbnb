@@ -215,31 +215,31 @@ const getAllStays = async () => {
   }
 };
 
-const fillCardStays = (data, callbackAnimation) => {
+const fillCardStays = (data, callbackAnimation, limit=6 ) => {
   const filterStayCity = document.getElementById("filter-stay-city");
   const filterGuest = document.getElementById("filter-guest");
   const stay = filterStayCity.textContent;
   let stayCity = "";
   if (stay.includes(",")) {
-    stayCity = stay.split(",")[1].trim();
+    stayCity = stay.split(",")[0].trim();
   }
   const match = filterGuest.textContent.match(/\d+/);
-
+ 
   let guests = 0;
   if (match) {
     guests = parseInt(match[0], 10);
   }
  
   const filtered = data.filter((item) => {
-    const matchStay = stayCity ? item.country.toLowerCase() === stayCity.toLowerCase() : true;
+    const matchStay = stayCity ? item.city.toLowerCase() === stayCity.toLowerCase() : true;
     const matchGuest = guests ? item.maxGuests >= guests : true;
     return matchStay && matchGuest;
   });
 
-  const filteredLength = filtered.length > 12 ? "12+" : filtered.length;
+  const filteredLength = filtered.length > limit ? `${limit}+` : filtered.length;
 
   const contentTitle = document.createElement("div");
-  contentTitle.className="flex justify-between items-start mt-10 mb-8";
+  contentTitle.className="flex justify-between items-start mt-10 md:mt-4 lg:mt-10 mb-8";
   const h2Title = document.createElement("h2");
   h2Title.textContent=`Stays in ${stayCity}`;
   h2Title.className="text-2xl font-semibold";
@@ -249,11 +249,12 @@ const fillCardStays = (data, callbackAnimation) => {
   contentTitle.appendChild(h2Title);
   contentTitle.appendChild(h3Title);
   callbackAnimation("main-content-title", contentTitle);
-  const contentListCard = document.createElement("div");
-  contentListCard.className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12";
-  for (let index = 0; index < 6; index++) {
+  callbackAnimation("main-content-card", "");
+  let delay = 0;
+  const itemsToShow = filtered.length > limit ? limit : filtered.length;
+  for (let index = 0; index < itemsToShow; index++) {
     const stay = filtered[index];
-    const beds = stay.beds ?`· ${stay.beds } beds`: '';
+    const beds = stay.beds ? `· ${stay.beds } beds`: '';
     const contentCard = document.createElement("div");
     contentCard.className = "flex flex-col gap-2";
     const contentCardImg = document.createElement("div");
@@ -261,7 +262,7 @@ const fillCardStays = (data, callbackAnimation) => {
     const cardImg = document.createElement("img");
     cardImg.src = stay.photo;
     cardImg.alt = `${stay.type} ${beds}`;
-    cardImg.className = "rounded-3xl h-50 lg:h-70 2xl:h-full  object-cover";
+    cardImg.className = "rounded-3xl xs:h-60 ss:h-68 ms:h-74 md:h-68 lg:h-55  2xl:h-140 object-cover";
     contentCardImg.appendChild(cardImg);
 
     
@@ -307,10 +308,9 @@ const fillCardStays = (data, callbackAnimation) => {
     contentCardDetails.appendChild(description);
     contentCard.appendChild(contentCardImg);
     contentCard.appendChild(contentCardDetails);
-    contentListCard.appendChild(contentCard);
-    
+    callbackAnimation("main-content-card", contentCard, 600, 'ease-out', true, delay);
+    delay+=200;    
   };
-  callbackAnimation("main-content-card", contentListCard, 1000, 'ease-out');
 };
 
 export { getAllStays, fillCardStays };
