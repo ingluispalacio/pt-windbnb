@@ -215,7 +215,7 @@ const getAllStays = async () => {
   }
 };
 
-const fillCardStays = (data, callbackAnimation, limit=6 ) => {
+const fillCardStays = (data, callbackAnimation, callbackShowModal, limit=6 ) => {
   const filterStayCity = document.getElementById("filter-stay-city");
   const filterGuest = document.getElementById("filter-guest");
   const stay = filterStayCity.textContent;
@@ -262,9 +262,34 @@ const fillCardStays = (data, callbackAnimation, limit=6 ) => {
     const cardImg = document.createElement("img");
     cardImg.src = stay.photo;
     cardImg.alt = `${stay.type} ${beds}`;
-    cardImg.className = "rounded-3xl xs:h-60 ss:h-68 ms:h-74 md:h-68 lg:h-55  2xl:h-140 object-cover";
+    cardImg.className = "rounded-3xl xs:h-60 ss:h-68 ms:h-74 md:h-68 lg:h-67  2xl:h-140 object-cover";
     contentCardImg.appendChild(cardImg);
 
+    const overlay = document.createElement("div");
+    overlay.className = `
+      absolute inset-0  rounded-3xl 
+      flex items-start justify-end 
+      opacity-100   
+      lg:opacity-0 lg:hover:opacity-100 lg:transition-opacity duration-300
+    `;
+
+    const buttonMore = document.createElement("button");
+    buttonMore.textContent = "See more";
+    buttonMore.className = `
+      px-4 py-2 rounded-full shadow-md text-xs 
+      bg-black/80 text-white transition mt-2 mr-2 
+      cursor-pointer lg:bg-black/60 lg:text-gray-200 
+      lg:hover:bg-black/80 lg:hover:text-white 
+    `;
+
+    
+    buttonMore.addEventListener("click", () => {
+      const contentStay= openStayModal(stay);       
+      callbackShowModal("modal","modalContent", contentStay);
+    });
+
+    overlay.appendChild(buttonMore);
+    contentCardImg.appendChild(overlay);
     
     const contentCardDetails = document.createElement("div");
     contentCardDetails.className = "flex flex-col gap-2";
@@ -273,10 +298,11 @@ const fillCardStays = (data, callbackAnimation, limit=6 ) => {
     detailTop.className = "flex justify-between items-center";
 
     const titleWrapper = document.createElement("div");
+    titleWrapper.className = "flex w-full";
     if (stay.superHost) {
       const superHost = document.createElement("span");
       superHost.textContent = "SUPER HOST";
-      superHost.className = "border border-gray-500 rounded-full px-3 py-1.5 text-xs font-bold uppercase mr-2";
+      superHost.className = "border border-gray-500 rounded-full px-2 py-1 text-xs font-bold uppercase mr-2";
       titleWrapper.appendChild(superHost);
     }
  
@@ -302,15 +328,109 @@ const fillCardStays = (data, callbackAnimation, limit=6 ) => {
 
     const description = document.createElement("h2");
     description.textContent = stay.title;
-    description.className = "text-base font-semibold";
+    description.className = "text-base font-bold";
 
     contentCardDetails.appendChild(detailTop);
     contentCardDetails.appendChild(description);
     contentCard.appendChild(contentCardImg);
     contentCard.appendChild(contentCardDetails);
-    callbackAnimation("main-content-card", contentCard, 600, 'ease-out', true, delay);
+    callbackAnimation("main-content-card", contentCard, 2500, 'ease-in-out', true, delay);
     delay+=200;    
   };
 };
+
+const openStayModal = (stay) => {
+  const container = document.createElement("div");
+  container.className =
+    " flex flex-col md:flex-row ";
+
+  
+  const imgWrapper = document.createElement("div");
+  imgWrapper.className = "md:w-1/2 w-full";
+  const img = document.createElement("img");
+  img.src = stay.photo;
+  img.alt = stay.title;
+  img.className = "h-60 md:h-auto md:max-h-[90vh] w-full object-cover rounded-tl-2xl rounded-tr-2xl md:rounded-tr-none  md:rounded-bl-2xl";
+  imgWrapper.appendChild(img);
+
+  
+  const info = document.createElement("div");
+  info.className = "p-6 md:w-1/2 flex flex-col gap-4";
+
+  const title = document.createElement("h2");
+  title.textContent = stay.title;
+  title.className = "text-xl font-bold";
+  
+  
+  const typeRow = document.createElement("div");
+  typeRow.className = "flex items-center gap-2";
+  const type = document.createElement("span");
+  type.textContent = `${stay.type} ${stay.beds ? `· ${stay.beds} beds` : ""}`;
+  type.className = "text-gray-600 text-sm";
+  typeRow.appendChild(type);
+  if (stay.superHost) {
+    const superHost = document.createElement("span");
+    superHost.textContent = "Super Host";
+    superHost.className =
+      "border border-gray-500 rounded-full px-2 py-1 text-xs font-bold uppercase";
+    typeRow.appendChild(superHost);
+  }
+
+  
+  const location = document.createElement("p");
+  location.className = "flex gap-1 text-gray-700 text-sm items-center";
+  const iconLocation = document.createElement("img");
+  iconLocation.src = "./src/images/icons/location_5df7949e.svg";
+  iconLocation.alt = "location";
+  iconLocation.className = "w-4 h-4";
+  const textLocation = document.createElement("span");
+  textLocation.textContent = `${stay.city}, ${stay.country}`;
+  location.appendChild(iconLocation);
+  location.appendChild(textLocation);
+
+
+  const ratingRow = document.createElement("div");
+  ratingRow.className = "flex items-center gap-2";
+  const star = document.createElement("img");
+  star.src = "./src/images/icons/star_55f860b4.svg";
+  star.alt = "star";
+  star.className = "w-4 h-4";
+  const rating = document.createElement("span");
+  rating.textContent = stay.rating;
+  rating.className = "text-sm font-medium";
+  ratingRow.appendChild(star);
+  ratingRow.appendChild(rating);
+
+  
+  const guests = document.createElement("p");
+  guests.textContent = `👥 Max Guests: ${stay.maxGuests}`;
+  guests.className = "text-gray-700 text-sm";
+
+  
+  const actionBtn = document.createElement("button");
+  actionBtn.textContent = "Book now";
+  actionBtn.className =
+    "bg-black text-white px-4 py-2 rounded-full mt-4 hover:bg-gray-800";
+
+  
+  info.appendChild(title);
+  info.appendChild(typeRow);
+  info.appendChild(location);
+  info.appendChild(ratingRow);
+  info.appendChild(guests);
+  info.appendChild(actionBtn);
+
+  
+  container.appendChild(imgWrapper);
+  container.appendChild(info);
+  return container;
+
+  
+  
+};
+
+
+
+
 
 export { getAllStays, fillCardStays };

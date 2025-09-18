@@ -107,4 +107,61 @@ const showLoading = (containerId) => {
   container.appendChild(wrapper);
 };
 
-export { fillContentAnimationById, counterById, showLoading };
+
+const showModal = (modalId, modalContentId, content="") => {
+  const modal = document.getElementById(modalId);
+  const modalContent = document.getElementById(modalContentId);
+
+  
+  modalContent.innerHTML = "";
+
+  const closeBtn = document.createElement("button");
+  closeBtn.id = "closeModal";
+  closeBtn.className = "absolute top-3 right-3 text-gray-500 hover:text-black cursor-pointer";
+  closeBtn.innerHTML = `
+  <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4.5 w-4.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="3"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+  `;
+  closeBtn.addEventListener("click", hideModal);
+
+  
+  modalContent.appendChild(closeBtn);
+  modalContent.appendChild(content);
+
+  modal.classList.remove("opacity-0", "pointer-events-none");
+  modal.classList.add("opacity-100");
+  modalContent.classList.remove("scale-95");
+  modalContent.classList.add("scale-100");
+
+  
+  document.getElementById("closeModal").addEventListener("click", () => { hideModal(modalId,modalContentId)});
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      hideModal(modalId,modalContentId);
+    }
+  });
+}
+
+const hideModal= (modalId,modalContentId) => {
+  const modal = document.getElementById(modalId);
+  const modalContent = document.getElementById(modalContentId);
+
+  // Animación de salida
+  modal.classList.remove("opacity-100");
+  modal.classList.add("opacity-0", "pointer-events-none");
+  modalContent.classList.remove("scale-100");
+  modalContent.classList.add("scale-95");
+}
+export { fillContentAnimationById, counterById, showLoading, showModal };

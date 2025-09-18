@@ -7,7 +7,7 @@
     <script src="./src/scripts/main.js" type="module" defer></script>
     <title>AirBnB</title>
   </head>
-  <body class="pt-6  sm:pt-16 md:pt-9 lg:pt-8 xl:pt-10 px-3 lg:px-12 xl:px-30 ">
+  <body class="pt-6  sm:pt-16 md:pt-7 lg:pt-8 xl:pt-10 px-3 lg:px-11 xl:px-30 ">
     <header
       class="flex flex-col justify-center items-center md:flex-row md:justify-between gap-10 w-full md:pb-8"
     >
@@ -64,6 +64,10 @@
     <main class="min-h-screen">
       <div id="main-content-title"></div>
       <div id="main-content-card" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 "></div>
+      <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="modalContent" class="bg-white rounded-2xl shadow-xl transform scale-95 transition-transform duration-300 w-11/12 sm:w-10/12 md:w-3/4 max-w-full max-h-[90vh]">
+        </div>
+      </div>
     </main>
     <footer class="flex justify-between items-center py-8">
       <p class="text-[#bdbdbd] mx-auto">
