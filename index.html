@@ -8,59 +8,98 @@
     <script src="./src/scripts/main.js" type="module" defer></script>
     <title>windbnb</title>
   </head>
-  <body class="pt-6  sm:pt-16 md:pt-7 lg:pt-8 xl:pt-10 px-3 lg:px-11 xl:px-30 min-h-screen flex flex-col">
+  <body class="pt-6  sm:pt-16 md:pt-7 lg:pt-8 xl:pt-10 px-3 lg:px-11 xl:px-25 min-h-screen flex flex-col">
     <header
-      class="flex flex-col justify-center items-center md:flex-row md:justify-between gap-10 w-full md:pb-8"
+      class="relative flex flex-col justify-center items-center md:flex-row md:justify-between gap-4 w-full md:pb-8"
     >
-      <div class="flex justify-between items-center w-full md:w-80 lg:w-140">
+      <div class="w-full md:w-80">
         <img
           src="./src/images/icons/logo-f7862584.svg"
           alt="logo"
           class="w-24"
         />
+      </div>
+      <div class="flex gap-1 items-center">
         <div
-          class="cursor-pointer hover:text-[#EB5757] hover:rounded-full transition-all duration-300 flex"
+          id="openDrawer"
+          class="cursor-pointer shadow-[0_1px_6px_#0000001a] flex rounded-2xl min-w-70 max-w-80 "
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-5"
+          <div
+            class="p-4 border-e-1 border-e-gray-100 min-w-35"
+            id="filter-stay-city"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
+          </div>
+          <div
+            class="p-4 text-[#BDBDBD] border-e-1 border-e-gray-100"
+            id="filter-guest"
+          >
+            Add Guests
+          </div>
+          <div class="p-4 flex justify-center items-center">
+            <img
+              src="./src/images/icons/search_326a574d.svg"
+              alt="search"
+              class="w-4.5"
             />
+          </div>
+        </div>
+        <div
+          id="dropdown-btn"
+          class="absolute top-0 right-0 md:relative cursor-pointer shadow-[0_1px_6px_#0000001a] text-[#BDBDBD] hover:text-[#EB5757] rounded-md md:h-10  md:rounded-2xl flex items-center"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mx-1 my-1 md:mx-2 md:my-2 hover:animate-spin ">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
           </svg>
-          Iniciar sesión
+        </div>
+        <div id="dropdown-menu"
+          class="z-40 opacity-0 scale-95 transform pointer-events-none absolute right-0 mt-1 ss:mt-6  mr-4 md:mt-32 w-30 md:w-40 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg transition-all duration-200 ease-out"
+        >
+          <div class="py-1">
+            <div
+              id="btn-login" 
+              class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                class="w-5 h-5 mr-2 text-gray-500">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6A2.25 2.25 0 0 0 5.25 5.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H3" />
+              </svg>
+              Login
+            </div>
+            <div class="relative group md:hover:block">
+              <div
+                id="language-btn"
+                class="flex items-center justify-between px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
+              >
+                <span class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                    class="w-5 h-5 mr-2 text-gray-500">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0c-2.25-1.5-3.75-4.5-3.75-9S9.75 3 12 3m0 18c2.25-1.5 3.75-4.5 3.75-9S14.25 3 12 3" />
+                  </svg>
+                  language
+                </span>
+              </div>
+
+              
+              <div id="language-menu"
+                class="absolute right-full top-0 mr-1 w-22 md:w-36 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 scale-95 transform pointer-events-none md:group-hover:opacity-100 md:group-hover:scale-100 md:group-hover:pointer-events-auto transition-all duration-200 ease-out"
+              >
+                <div 
+                  id="language-english"
+                  class="block px-4 py-2 text-sm text-gray-800 font-bold hover:bg-gray-100">English</div>
+                <div
+                  id="language-spanish"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Spanish</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div
-        id="openDrawer"
-        class="cursor-pointer shadow-[0_1px_6px_#0000001a] flex rounded-2xl min-w-70 max-w-80"
-      >
-        <div
-          class="px-4 py-4 border-e-1 border-e-gray-100 min-w-35"
-          id="filter-stay-city"
-        >
-        </div>
-        <div
-          class="px-4 py-4 text-[#BDBDBD] border-e-1 border-e-gray-100"
-          id="filter-guest"
-        >
-          Add Guests
-        </div>
-        <div class="px-4 py-4 flex justify-center items-center">
-          <img
-            src="./src/images/icons/search_326a574d.svg"
-            alt="search"
-            class="w-4.5"
-          />
-        </div>
-      </div>
+      
     </header>
     <main class="flex-1">
       <div id="main-content-title"></div>

@@ -1,3 +1,10 @@
+import {
+  fillContentAnimationById,
+  counterById,
+  getOrCreateLocalStorage,
+  setLocalStorage
+} from "./utils.js";
+
 const drawer = document.getElementById("drawer");
 const overlay = document.getElementById("overlay");
 const openButton = document.getElementById("openDrawer");
@@ -27,7 +34,7 @@ const drawerFilters = () => {
   });
 };
 
-const toggleFilter = (data, callbackFillAnimation, callbackCounter) => {
+const toggleFilter = (data) => {
   const contentLabelCityLocation = document.getElementById(
     "content-label-city-location"
   );
@@ -80,8 +87,8 @@ const toggleFilter = (data, callbackFillAnimation, callbackCounter) => {
         cityLocation.textContent = element;
       });
     });
-    callbackFillAnimation("content-city-location", ul);
-    callbackFillAnimation("content-guest", "");
+    fillContentAnimationById("content-city-location", ul);
+    fillContentAnimationById("content-guest", "");
   });
 
   contentLabelGuest.addEventListener("click", () => {
@@ -97,15 +104,15 @@ const toggleFilter = (data, callbackFillAnimation, callbackCounter) => {
         "Adults",
         "Ages 13 or above",
         "adultTotal",
-        callbackCounter
+        counterById
       )
     );
     wrapper.appendChild(
-      createGuestCounter("Children", "Ages 2-12", "childTotal", callbackCounter)
+      createGuestCounter("Children", "Ages 2-12", "childTotal")
     );
 
-    callbackFillAnimation("content-guest", wrapper);
-    callbackFillAnimation("content-city-location", "");
+    fillContentAnimationById("content-guest", wrapper);
+    fillContentAnimationById("content-city-location", "");
   });
 
   contentLabelCityLocation.click();
@@ -115,10 +122,12 @@ const createGuestCounter = (
   title,
   subtitle,
   idCounter,
-  callbackCounter,
   options = {}
 ) => {
   const { affectsTotal = true } = options;
+
+  if (!idCounter) return;
+  
   const guestCounter = document.createElement("div");
   guestCounter.className = "flex flex-col gap-2";
 
@@ -144,7 +153,7 @@ const createGuestCounter = (
     "text-gray-400 bg-white border border-gray-500 px-2 rounded-sm cursor-pointer hover:bg-gray-100";
 
   const pTotal = document.createElement("p");
-  pTotal.textContent = "0";
+  pTotal.textContent = getOrCreateLocalStorage(idCounter, "0");
   pTotal.id = idCounter;
   pTotal.className = "text-sm font-extralight";
 
@@ -172,11 +181,11 @@ const createGuestCounter = (
   };
 
   btnIncrement.addEventListener("click", () => {
-    callbackCounter(idCounter);
+    counterById(idCounter, false, setLocalStorage);
     updateGuestTotal();
   });
   btnDecrement.addEventListener("click", () => {
-    callbackCounter(idCounter, true);
+    counterById(idCounter, true, setLocalStorage);
     updateGuestTotal();
   });
 

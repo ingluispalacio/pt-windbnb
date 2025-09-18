@@ -43,7 +43,7 @@ const fillContentAnimationById = (
   });
 };
 
-const counterById = (id, decrement = false) => {
+const counterById = (id, decrement = false, callbackLocalStorage) => {
   const content = document.getElementById(id);
   if (!content) return 0;
   const match = content.textContent.match(/\d+/);
@@ -59,11 +59,40 @@ const counterById = (id, decrement = false) => {
   } else {
     number++;
   }
-
   content.textContent = number;
+  callbackLocalStorage(id, number);
 
   return number;
 };
+
+const getOrCreateLocalStorage = (id, defaultValue = "") => {
+  let value = localStorage.getItem(id);
+
+  if (value === null) {
+    localStorage.setItem(id, JSON.stringify(defaultValue));
+    return defaultValue;
+  }
+
+  try {
+    return JSON.parse(value);
+  } catch {
+    return value;
+  }
+};
+
+const setLocalStorage = (id, vaule) => {
+  const exits = localStorage.getItem(id);
+  if (exits !== null) {
+    localStorage.setItem(id, JSON.stringify(vaule));
+  }
+};
+
+const resetLocalStorage =(defaults = {})=> {
+  localStorage.clear(); 
+  for (let key in defaults) {
+    localStorage.setItem(key, JSON.stringify(defaults[key]));
+  }
+}
 
 const showLoadingSpinner = (containerId) => {
   const container = document.getElementById(containerId);
@@ -114,13 +143,13 @@ const showLoading = (containerId) => {
   container.innerHTML = "";
 
   const wrapper = document.createElement("div");
-  wrapper.className = "fixed inset-0 flex flex-col items-center justify-center bg-black/30 z-50 gap-4";
+  wrapper.className =
+    "fixed inset-0 flex flex-col items-center justify-center bg-black/30 z-50 gap-4";
 
- 
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("aria-hidden", "true");
   svg.setAttribute("role", "status");
-  svg.setAttribute("class", "w-16 h-16 animate-spin text-[#EB5757]"); 
+  svg.setAttribute("class", "w-16 h-16 animate-spin text-[#EB5757]");
   svg.setAttribute("viewBox", "1.443 2.5 18.764 16.25");
   svg.setAttribute("fill", "#EB5757");
   svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -142,18 +171,16 @@ const showLoading = (containerId) => {
   container.appendChild(wrapper);
 };
 
-
-
-const showModal = (modalId, modalContentId, content="") => {
+const showModal = (modalId, modalContentId, content = "") => {
   const modal = document.getElementById(modalId);
   const modalContent = document.getElementById(modalContentId);
 
-  
   modalContent.innerHTML = "";
 
   const closeBtn = document.createElement("button");
   closeBtn.id = "closeModal";
-  closeBtn.className = "absolute top-3 right-3 text-gray-500 hover:text-black cursor-pointer";
+  closeBtn.className =
+    "absolute top-3 right-3 text-gray-500 hover:text-black cursor-pointer";
   closeBtn.innerHTML = `
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +199,6 @@ const showModal = (modalId, modalContentId, content="") => {
   `;
   closeBtn.addEventListener("click", hideModal);
 
-  
   modalContent.appendChild(closeBtn);
   modalContent.appendChild(content);
 
@@ -181,16 +207,17 @@ const showModal = (modalId, modalContentId, content="") => {
   modalContent.classList.remove("scale-95");
   modalContent.classList.add("scale-100");
 
-  
-  document.getElementById("closeModal").addEventListener("click", () => { hideModal(modalId,modalContentId)});
+  document.getElementById("closeModal").addEventListener("click", () => {
+    hideModal(modalId, modalContentId);
+  });
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
-      hideModal(modalId,modalContentId);
+      hideModal(modalId, modalContentId);
     }
   });
-}
+};
 
-const hideModal= (modalId,modalContentId) => {
+const hideModal = (modalId, modalContentId) => {
   const modal = document.getElementById(modalId);
   const modalContent = document.getElementById(modalContentId);
 
@@ -198,5 +225,15 @@ const hideModal= (modalId,modalContentId) => {
   modal.classList.add("opacity-0", "pointer-events-none");
   modalContent.classList.remove("scale-100");
   modalContent.classList.add("scale-95");
-}
-export { fillContentAnimationById, counterById, showLoading, showLoadingSpinner, showModal };
+};
+
+export {
+  fillContentAnimationById,
+  counterById,
+  showLoading,
+  showLoadingSpinner,
+  showModal,
+  getOrCreateLocalStorage,
+  setLocalStorage,
+  resetLocalStorage
+};
