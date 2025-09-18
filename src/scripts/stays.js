@@ -408,9 +408,9 @@ const openStayModal = (stay) => {
 
   
   const actionBtn = document.createElement("button");
-  actionBtn.textContent = "Book now";
+  actionBtn.textContent = "Reserve now";
   actionBtn.className =
-    "bg-black text-white px-4 py-2 rounded-full mt-4 hover:bg-gray-800";
+    "bg-black text-white px-4 py-2 rounded-full mt-4 hover:bg-gray-900 cursor-pointer";
 
   
   info.appendChild(title);
