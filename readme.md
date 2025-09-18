@@ -41,12 +41,12 @@ Basta con abrir `index.html` y comenzar a explorar. 🌍
 
 ```plaintext
 📂 ├── src/
-    📜 ├── data/
-         📄 ├── stays.json          # Datos de ejemplo de las estancias
+    🗂️ ├── data/
+         📊 ├── stays.json          # Datos de ejemplo de las estancias
     📜 ├── scripts/
          📄 ├── filters.js          # Lógica de filtrado
          📄 ├── main.js             # Código principal de la app
-         📄 ├── settings.js         # Configuración inicial
+         📄 ├── settings.js         # Código del dropdown settings
          📄 ├── stays.js            # Importación y manejo de datos
          📄 └── utils.js            # Funciones auxiliares
     🖼️ ├── images/
