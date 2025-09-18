@@ -7,17 +7,17 @@ const initDropdownSetting =() =>{
   const OPEN = ["opacity-100", "scale-100", "pointer-events-auto"];
   const CLOSE = ["opacity-0", "scale-95", "pointer-events-none"];
 
-  function open(el) {
+  const open = (el) =>{
     el.classList.remove(...CLOSE);
     el.classList.add(...OPEN);
   }
 
-  function close(el) {
+  const close = (el) => {
     el.classList.remove(...OPEN);
     el.classList.add(...CLOSE);
   }
 
-  function toggle(el) {
+  const toggle = (el) => {
     if (el.classList.contains("opacity-100")) {
       close(el);
     } else {

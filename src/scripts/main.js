@@ -6,25 +6,28 @@
 
 import { getAllStays, fillCardStays } from "./stays.js";
 import { drawerFilters, toggleFilter, searchStays } from "./filters.js";
-import { initDropdownSetting } from './settings.js'
+import { initDropdownSetting } from "./settings.js";
 import { showLoading, showLoadingSpinner, resetLocalStorage } from "./utils.js";
 
-resetLocalStorage();
+const main = () => {
+  resetLocalStorage();
 
-showLoadingSpinner("filter-stay-city");
-showLoadingSpinner("city-location");
+  showLoadingSpinner("filter-stay-city");
+  showLoadingSpinner("city-location");
+  showLoading("main-content-card");
 
-showLoading("main-content-card");
+  initDropdownSetting();
 
-initDropdownSetting();
+  setTimeout(async () => {
+    const response = await getAllStays();
+    if (response.success) {
+      toggleFilter(response.data);
+      fillCardStays(response.data);
+      searchStays(() => fillCardStays(response.data));
+    }
 
-setTimeout(async () => {
-  const response = await getAllStays();
-  if (response.success) {
-    toggleFilter(response.data);
-    fillCardStays(response.data);
-    searchStays(() => fillCardStays(response.data));
-  }
+    drawerFilters();
+  }, 3000);
+};
 
-  drawerFilters();
-}, 3000);
+main();

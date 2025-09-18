@@ -197,7 +197,6 @@ const showModal = (modalId, modalContentId, content = "") => {
             />
           </svg>
   `;
-  closeBtn.addEventListener("click", hideModal);
 
   modalContent.appendChild(closeBtn);
   modalContent.appendChild(content);
@@ -207,20 +206,15 @@ const showModal = (modalId, modalContentId, content = "") => {
   modalContent.classList.remove("scale-95");
   modalContent.classList.add("scale-100");
 
-  document.getElementById("closeModal").addEventListener("click", () => {
-    hideModal(modalId, modalContentId);
-  });
+  document.getElementById("closeModal").addEventListener("click", () => hideModal(modal, modalContent));
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
-      hideModal(modalId, modalContentId);
+      hideModal(modal, modalContent);
     }
   });
 };
 
-const hideModal = (modalId, modalContentId) => {
-  const modal = document.getElementById(modalId);
-  const modalContent = document.getElementById(modalContentId);
-
+const hideModal = (modal, modalContent) => {
   modal.classList.remove("opacity-100");
   modal.classList.add("opacity-0", "pointer-events-none");
   modalContent.classList.remove("scale-100");
