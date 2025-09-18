@@ -65,7 +65,7 @@ const counterById = (id, decrement = false) => {
   return number;
 };
 
-const showLoading = (containerId) => {
+const showLoadingSpinner = (containerId) => {
   const container = document.getElementById(containerId);
   if (!container) return;
 
@@ -107,6 +107,42 @@ const showLoading = (containerId) => {
   container.appendChild(wrapper);
 };
 
+const showLoading = (containerId) => {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "fixed inset-0 flex flex-col items-center justify-center bg-black/30 z-50 gap-4";
+
+ 
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("role", "status");
+  svg.setAttribute("class", "w-16 h-16 animate-spin text-[#EB5757]"); 
+  svg.setAttribute("viewBox", "1.443 2.5 18.764 16.25");
+  svg.setAttribute("fill", "#EB5757");
+  svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute(
+    "d",
+    "M8.227 4.5C9.382 2.5 12.269 2.5 13.423 4.5L19.053 14.25C20.207 16.25 18.764 18.75 16.455 18.75H5.196C2.887 18.75 1.443 16.25 2.598 14.25L8.227 4.5Z"
+  );
+
+  svg.appendChild(path);
+
+  const span = document.createElement("span");
+  span.textContent = "Loading...";
+  span.className = "text-lg text-[#EB5757] font-semibold animate-pulse";
+
+  wrapper.appendChild(svg);
+  wrapper.appendChild(span);
+  container.appendChild(wrapper);
+};
+
+
 
 const showModal = (modalId, modalContentId, content="") => {
   const modal = document.getElementById(modalId);
@@ -119,7 +155,7 @@ const showModal = (modalId, modalContentId, content="") => {
   closeBtn.id = "closeModal";
   closeBtn.className = "absolute top-3 right-3 text-gray-500 hover:text-black cursor-pointer";
   closeBtn.innerHTML = `
-  <svg
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-4.5 w-4.5"
             fill="none"
@@ -158,10 +194,9 @@ const hideModal= (modalId,modalContentId) => {
   const modal = document.getElementById(modalId);
   const modalContent = document.getElementById(modalContentId);
 
-  // Animación de salida
   modal.classList.remove("opacity-100");
   modal.classList.add("opacity-0", "pointer-events-none");
   modalContent.classList.remove("scale-100");
   modalContent.classList.add("scale-95");
 }
-export { fillContentAnimationById, counterById, showLoading, showModal };
+export { fillContentAnimationById, counterById, showLoading, showLoadingSpinner, showModal };

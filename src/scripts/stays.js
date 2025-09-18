@@ -216,6 +216,8 @@ const getAllStays = async () => {
 };
 
 const fillCardStays = (data, callbackAnimation, callbackShowModal, limit=6 ) => {
+ const mainContentCard = document.getElementById("main-content-card");
+  mainContentCard.className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12" ;
   const filterStayCity = document.getElementById("filter-stay-city");
   const filterGuest = document.getElementById("filter-guest");
   const stay = filterStayCity.textContent;

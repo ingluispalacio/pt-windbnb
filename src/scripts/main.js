@@ -10,17 +10,24 @@ import {
   fillContentAnimationById,
   counterById,
   showLoading,
+  showLoadingSpinner,
   showModal,
 } from "./utils.js";
 
-showLoading("filter-stay-city");
-showLoading("city-location");
+showLoadingSpinner("filter-stay-city");
+showLoadingSpinner("city-location");
 
-const response = await getAllStays();
-if (response.success) {
-  toggleFilter(response.data, fillContentAnimationById, counterById);
-  fillCardStays(response.data, fillContentAnimationById, showModal);
-  searchStays(() => fillCardStays(response.data, fillContentAnimationById, showModal));
-}
+showLoading("main-content-card")
 
-drawerFilters();
+setTimeout(async () => {
+  const response = await getAllStays();
+  if (response.success) {
+    toggleFilter(response.data, fillContentAnimationById, counterById);
+    fillCardStays(response.data, fillContentAnimationById, showModal);
+    searchStays(() =>
+      fillCardStays(response.data, fillContentAnimationById, showModal)
+    );
+  }
+
+  drawerFilters();
+}, 3000);
