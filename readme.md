@@ -1,45 +1,86 @@
-# ¡Bienvenidos al proyecto! 🎉
+# 🌬️🏠 Windbnb – Proyecto de Alojamiento  
 
-Este repositorio es una plantilla diseñada para ayudarte a comenzar rápidamente. Sigue estos pasos para configurar tu entorno y empezar a trabajar:
+¡Bienvenidos a **Windbnb**! 🎉  
+Este proyecto es una aplicación web inspirada en **Airbnb**, desarrollada con **HTML, JavaScript y TailwindCSS**, donde los usuarios pueden explorar estancias disponibles, aplicar filtros y visualizar resultados de forma interactiva y responsive.  
 
-## 1. Usa esta plantilla
-Haz clic en el botón **"Use this template"** en la parte superior derecha de este repositorio para crear un nuevo proyecto basado en esta plantilla. 📂
+---
 
-## 2. Instala las dependencias
-Después de clonar tu nuevo repositorio, abre la terminal en la carpeta del proyecto y ejecuta:
+## ✨ Características principales
+- 🔎 **Búsqueda de estancias**: Filtra alojamientos por ciudad y número de huéspedes.  
+- 🏡 **Listado dinámico**: Renderizado de estancias a partir de datos en `stays.json`.  
+- 🎨 **Estilos con TailwindCSS**: Diseño moderno, responsive y optimizado para diferentes dispositivos.  
+- ⚡ **JavaScript modular**: Código organizado en varios archivos (`filters.js`, `utils.js`, etc.) para mayor mantenibilidad.  
+- 🖼️ **Diseño de referencia**: Incluye mockups en la carpeta `/src/images/design` para guiar el desarrollo.  
+
+---
+
+## 🚀 Instalación y configuración
+
+1. **Clona el repositorio**  
+```bash
+git clone https://github.com/ingluispalacio/pt-windbnb.git
+cd pt-windbnb
+```
+
+2. **Instala dependencias**  
 ```bash
 npm install
 ```
-Esto instalará todo lo necesario para que el proyecto funcione. ✅
 
-## 3. Compila los estilos de Tailwind CSS ✂️
-Para que los estilos de Tailwind funcionen mientras trabajas, ejecuta:
+3. **Compila los estilos de TailwindCSS**  
 ```bash
 npm run tw
 ```
-Este comando se encargará de compilar los estilos cada vez que uses clases de Tailwind en tu HTML. 🎨
 
-## 4. Archivos importantes 📂
-- **`src/scripts/stays.js`**: Aquí encontrarás la data que necesitarás usar durante el proyecto. ¡Es tu fuente de información principal! 📊
-- **`src/scripts/main.js`**: Este es el archivo donde escribirás el código principal de tu aplicación. Todo lo que construyas comenzará aquí. 🛠️
-- **`src/scripts/utils.js`**: Este archivo contiene funciones auxiliares que pueden ser reutilizadas en diferentes partes de tu proyecto. Es un buen lugar para almacenar lógica común, como validaciones, formateos o cálculos. 🔧
-- **`src/images/design`**: En esta carpeta encontrarás capturas que muestran cómo debería lucir el resultado esperado. Esto te servirá como referencia visual. 🖼️
-- **`index.html`**: Este es el archivo donde desarrollarás el diseño de tu proyecto. Aquí se integrarán los estilos y el código para dar vida a tu aplicación. 🖋️
+4. **Abre el proyecto en tu navegador**  
+Basta con abrir `index.html` y comenzar a explorar. 🌍  
+
+---
+
+## 📂 Estructura del proyecto
 
 ```plaintext
 📂 ├── src/
+    📜 ├── data/
+         📄 ├── stays.json          # Datos de ejemplo de las estancias
     📜 ├── scripts/
-         📄 ├── stays.js
-         📄 └── main.js
+         📄 ├── filters.js          # Lógica de filtrado
+         📄 ├── main.js             # Código principal de la app
+         📄 ├── settings.js         # Configuración inicial
+         📄 ├── stays.js            # Importación y manejo de datos
+         📄 └── utils.js            # Funciones auxiliares
     🖼️ ├── images/
-         🖼️ └── design/
+         🖼️ └── design/             # Mockups de referencia
+    🎨 ├── styles/
+         🎨 ├── input.css           # Configuración Tailwind
+         🎨 └── output.css          # Estilos generados
 📄 ├── index.html
 📦 ├── package.json
 📖 └── README.md
 🚫 └── .gitignore
 ```
 
-## 5. ¡Manos a la obra! 🚀
-Ya tienes todo listo para empezar. Explora los archivos, experimenta con el código y diviértete aprendiendo. 🎉
+---
 
-Si tienes dudas, no dudes en preguntar. ¡Éxito en tu proyecto! 💪
+## 📊 Tecnologías utilizadas
+- **JavaScript (ES6+)** – lógica de la aplicación.  
+- **TailwindCSS** – estilos modernos y responsive.  
+- **HTML5** – estructura principal.  
+
+---
+
+## 📸 Vista previa  
+Puedes ver el diseño de referencia de dos formas:  
+1. **Capturas de pantalla**  
+   Revisa la carpeta [`/src/images/design`](./src/images/design), donde encontrarás los mockups que sirvieron como guía para el desarrollo del proyecto. 🖼️  
+
+2. **Demo en línea**  
+   Explora una versión desplegada del proyecto en este enlace:  
+   👉 [Windbnb – Dev Challenges](https://windbnb-dev-challenges.vercel.app/) 🌍 
+
+---
+
+## 🙌 Agradecimientos
+Este proyecto fue creado como práctica de desarrollo frontend.  
+Gracias por visitar el repositorio y ¡espero tus sugerencias y aportes! 💡  
+
